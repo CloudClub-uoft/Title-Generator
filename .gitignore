@@ -2,8 +2,9 @@ venv/
 .vscode/
 .DS_store/
 
-# json datasets
-*/*.json
+# datasets
+*.json
+*.jsonl.gz
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
