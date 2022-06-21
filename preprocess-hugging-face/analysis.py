@@ -14,8 +14,10 @@ with gzip.open(filename , 'rb') as gzip_file:
         if line:
             obj = json.loads(line)
             json_content.append(obj)
+            # re.findall includes punctuation
             title_split = re.findall(r"[\w']+|[.,!?:;]", obj["title"])
             body_split = re.findall(r"[\w']+|[.,!?:;]", obj["body"])
+            # titles between 3 to 15 words and body between 15 and 60 words (including punctuation)
             if 3 <= len(title_split) <= 15 and 15 <= len(body_split) <= 60:
                 can_be_used += 1
             total_posts += 1
