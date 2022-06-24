@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 from math import log
+import matplotlib.pyplot as plt
 
 class PositionalEncoding(nn.Module):
 
@@ -29,3 +30,18 @@ class PositionalEncoding(nn.Module):
     def forward(self, x):
         x = x + self.pe[:, : x.size(1)]
         return x
+
+
+if __name__ == "__main__":
+    encoder = PositionalEncoding(embed_dim=48, input_dim=96)
+    pe = encoder.pe.squeeze().T.cpu().numpy()
+
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,3))
+    pos = ax.imshow(pe)
+    fig.colorbar(pos, ax=ax)
+    ax.set_xlabel("Position")
+    ax.set_ylabel("Hidden dimension")
+    ax.set_title("Positional encoding over hidden dimensions")
+    ax.set_xticks([1]+[i*10 for i in range(1,1+pe.shape[1]//10)])
+    ax.set_yticks([1]+[i*10 for i in range(1,1+pe.shape[0]//10)])
+    plt.show()

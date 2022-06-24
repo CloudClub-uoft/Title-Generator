@@ -11,3 +11,12 @@ def attention(q, k, v, d_k, mask=None, dropout=None):
         scaled_dot = dropout(scaled_dot)
     output =  torch.matmul(scaled_dot, v)
     return output
+
+if __name__ == "__main__":
+    q = torch.tensor([[0, 10, 0], [1, 2, 3]], dtype=torch.float32)
+    k = torch.tensor([[10, 0, 0], [0, 10, 0]], dtype=torch.float32)
+    v = torch.tensor([[1, 0, 1], [10, 0, 5]], dtype=torch.float32)
+    mask = torch.tensor([[1,0],[1,1]])
+    output = attention(q, k, v, k.shape[-1], mask=mask)
+
+    print(output)

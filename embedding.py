@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 class WordEmbedding(nn.Module):
     def __init__(self, vocab_size, embed_dim=512):
@@ -17,3 +18,12 @@ class WordEmbedding(nn.Module):
     def forward(self, x):
         # x: embedding tensor (batch_size by seq_len by vocab_size)
         return torch.matmul(x, self.embed_matrix)
+
+if __name__ == "__main__":
+    vocab_size = 50 # 50 words in dictionary
+    in_sequence = F.one_hot(torch.arange(0, 10) % 3, num_classes=vocab_size) # not working
+    in_sequence = in_sequence.to(torch.float)
+
+    embedding = WordEmbedding(vocab_size, embed_dim=5)
+    out = embedding(in_sequence)
+    print(out.shape)

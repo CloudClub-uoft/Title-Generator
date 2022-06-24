@@ -1,7 +1,5 @@
 from torch import nn
 import torch
-import torch.nn.functional as F
-from math import sqrt
 
 from scaled_dot_attention import attention
 
@@ -34,3 +32,16 @@ class MultiHeadAttention(nn.Module):
         output = self.out_proj(scores)
 
         return output
+
+if __name__ == "__main__":
+    embed_dim = 512
+    num_heads = 8
+
+    q = torch.tensor([[0, 10, 0]], dtype=torch.float32)
+    k = torch.tensor([[0, 10, 0]], dtype=torch.float32)
+    v = torch.tensor([[0, 10, 0]], dtype=torch.float32)
+    input_dim = 3
+
+    mh = MultiHeadAttention(num_heads, embed_dim, input_dim)
+    scores = mh.forward(q, k, v)
+    print(scores)

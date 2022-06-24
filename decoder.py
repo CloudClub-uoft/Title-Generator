@@ -1,4 +1,5 @@
 from torch import nn
+import torch
 
 from multi_head_attention import MultiHeadAttention
 from feedforward import PositionwiseFeedForward
@@ -40,3 +41,15 @@ class DecoderLayer(nn.Module):
         x = self.norm3(x)
 
         return x
+
+if __name__ == "__main__":
+    # TESTING
+    embed_dim = 3
+    num_heads = 1
+
+    x = torch.tensor([[0, 10, 0]], dtype=torch.float32)
+    input_dim = 3
+
+    decoder = DecoderLayer(embed_dim, input_dim, num_heads)
+    output = decoder.forward(x)
+    print(output)
