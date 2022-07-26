@@ -2,6 +2,12 @@ venv/
 .vscode/
 .DS_store/
 
+# json datasets
+*/*.json
+
+# csv files
+*/*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
