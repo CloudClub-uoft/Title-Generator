@@ -13,6 +13,7 @@ class PositionalEncoding(nn.Module):
         super().__init__()
 
         encod = torch.zeros(input_dim, embed_dim)
+        print(encod)
 
         position = torch.arange(0, input_dim, dtype=torch.float).unsqueeze(1)   # numerator
 
