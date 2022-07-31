@@ -33,7 +33,7 @@ class PositionalEncoding(nn.Module):
 
 
 if __name__ == "__main__":
-    encoder = PositionalEncoding(embed_dim=6, input_dim=6)
+    encoder = PositionalEncoding(embed_dim=48, input_dim=96)
     pe = encoder.pe.squeeze().T.cpu().numpy()
 
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,3))
