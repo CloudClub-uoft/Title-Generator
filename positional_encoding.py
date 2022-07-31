@@ -13,7 +13,6 @@ class PositionalEncoding(nn.Module):
         super().__init__()
 
         encod = torch.zeros(input_dim, embed_dim)
-        print(encod)
 
         position = torch.arange(0, input_dim, dtype=torch.float).unsqueeze(1)   # numerator
 
@@ -34,7 +33,7 @@ class PositionalEncoding(nn.Module):
 
 
 if __name__ == "__main__":
-    encoder = PositionalEncoding(embed_dim=48, input_dim=96)
+    encoder = PositionalEncoding(embed_dim=6, input_dim=6)
     pe = encoder.pe.squeeze().T.cpu().numpy()
 
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,3))
