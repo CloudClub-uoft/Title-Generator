@@ -1,4 +1,5 @@
 from torch import nn
+import torch
 
 from multi_head_attention import MultiHeadAttention
 from feedforward import PositionwiseFeedForward
@@ -27,8 +28,20 @@ class EncoderLayer(nn.Module):
         x = self.norm1(x)
 
         # feedforward output
-        ff_out = self.feedforward(x)  # TODO: needs to be implemented
+        ff_out = self.feedforward(x) 
         x = x + self.dropout2(ff_out)
         x = self.norm2(x)
 
         return x
+
+if __name__ == "__main__":
+    # TESTING
+    embed_dim = 3
+    num_heads = 1
+
+    x = torch.tensor([[0, 10, 0]], dtype=torch.float32)
+    input_dim = 3
+
+    encoder = EncoderLayer(embed_dim, input_dim, num_heads)
+    output = encoder.forward(x)
+    print(output)
