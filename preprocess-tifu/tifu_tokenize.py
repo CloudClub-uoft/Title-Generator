@@ -54,5 +54,6 @@ list_of_sentences = build_list_of_sentences("tifu_all_tokenized_and_filtered.jso
 tokens = generate_tokens(list_of_sentences)
 one_hot = build_one_hot_from_tokens(tokens, 60)
 
+print(list_of_sentences)
 print(one_hot)
-print(one_hot.shape) # (4x60x51) (number_of_sentences x max_words_in_sentence x number_of_unique_words)
+print(one_hot.shape) # (4x60x51)

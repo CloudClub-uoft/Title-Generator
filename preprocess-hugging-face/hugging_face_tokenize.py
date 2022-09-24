@@ -1,17 +1,20 @@
 import numpy as np
 import re
 import json
+import gzip
 
 def build_list_of_sentences(file):
-    with open(file) as f:
+    """ 
+    opens the file, returns the valid lines in a list of dictionaries 
+    """
+    with gzip.open(file, "rb") as gzip_file:
         # example run with the first few entries:
-        lines = f.readlines()[:10]
+        lines = gzip_file.readlines()[:10] 
         paragraphs = []
-        for line in lines:
-            line = json.loads(line)
-            if line["tldr"] is not None:
-                paragraphs.append(line["tldr"])
-        return paragraphs
+        for line in lines: 
+            line = json.loads(line) 
+            paragraphs.append(line["body"]) 
+        return paragraphs 
 
 def tokenizer(words: str):
     '''
@@ -50,9 +53,11 @@ def build_one_hot_from_tokens(tokens, max_length):
 
     return results
     
-list_of_sentences = build_list_of_sentences("tifu_all_tokenized_and_filtered.json")
+# list_of_sentences = build_list_of_sentences(r"C:\Users\ssara\OneDrive\Documents\SCHOOL\programming\CloudAI\Title-Generator\preprocess-hugging-face\reddit_title_text_2011.jsonl.gz")
+list_of_sentences = ["I am testing this function. Yes I am."]
 tokens = generate_tokens(list_of_sentences)
 one_hot = build_one_hot_from_tokens(tokens, 60)
 
-print(one_hot)
-print(one_hot.shape) # (4x60x51) (number_of_sentences x max_words_in_sentence x number_of_unique_words)
+# print(list_of_sentences)
+# print(one_hot)
+# print(one_hot.shape) # (4x60x51)
