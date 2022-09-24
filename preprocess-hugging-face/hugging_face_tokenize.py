@@ -53,8 +53,8 @@ def build_one_hot_from_tokens(tokens, max_length):
 
     return results
     
-list_of_sentences = build_list_of_sentences(r"C:\Users\ssara\OneDrive\Documents\SCHOOL\programming\CloudAI\Title-Generator\preprocess-hugging-face\reddit_title_text_2011.jsonl.gz")
-# list_of_sentences = ["I am testing this function. Yes I am."]
+# list_of_sentences = build_list_of_sentences(r"C:\Users\ssara\OneDrive\Documents\SCHOOL\programming\CloudAI\Title-Generator\preprocess-hugging-face\reddit_title_text_2011.jsonl.gz")
+list_of_sentences = ["I am testing this function. Yes I am."]
 tokens = generate_tokens(list_of_sentences)
 one_hot = build_one_hot_from_tokens(tokens, 60)
 
