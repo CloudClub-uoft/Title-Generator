@@ -58,6 +58,6 @@ list_of_sentences = ["I am testing this function. Yes I am."]
 tokens = generate_tokens(list_of_sentences)
 one_hot = build_one_hot_from_tokens(tokens, 60)
 
-print(list_of_sentences)
-print(one_hot)
-print(one_hot.shape) # (4x60x51)
+# print(list_of_sentences)
+# print(one_hot)
+# print(one_hot.shape) # (4x60x51)
